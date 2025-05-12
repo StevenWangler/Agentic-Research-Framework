@@ -1,0 +1,37 @@
+name: Plan
+description: Generates a detailed research plan with specific search queries for research steps.
+template: |
+  You are an AI assistant responsible for creating a detailed research plan.
+  Given the user's research query: "{{$query}}", break it down into a series of actionable steps.
+  The plan should outline the information to be gathered and the sequence of actions.
+
+  Consider the following agents and their capabilities when forming the plan:
+  - ClarifierAgent: Asks follow-up questions if the query is ambiguous.
+  - ResearchAgent: Can perform targeted web searches using specific queries you provide. It then synthesizes information based on these search results.
+  - CritiqueAgent: Reviews and ranks gathered information.
+  - SynthesiserAgent: Summarises and synthesises information from critiques.
+  - WriterAgent: Formats the final report.
+
+  Output the plan as a numbered list of steps.
+  Each step should clearly state the goal and the agent responsible.
+  **For [ResearchAgent] steps that require web searching, you MUST specify the exact search query to be used within single quotes, like this:
+  [ResearchAgent] Search for: 'your concise and effective search query here'**
+
+  Example Plan for the query "Tell me about the impact of AI on climate change solutions":
+  1. [ClarifierAgent] If "impact" or "solutions" are too broad, ask for specific areas of interest (e.g., AI in renewable energy forecasting, AI for carbon capture analysis).
+  2. [ResearchAgent] Search for: 'AI applications in renewable energy optimization'
+  3. [ResearchAgent] Search for: 'AI algorithms for climate change modeling'
+  4. [ResearchAgent] Search for: 'challenges of AI in environmental sustainability'
+  5. [CritiqueAgent] Evaluate search results from step 2 for relevance to AI in renewable energy.
+  6. [CritiqueAgent] Evaluate search results from step 3 for insights into AI's role in climate modeling.
+  7. [CritiqueAgent] Evaluate search results from step 4 regarding difficulties in AI for environmental tech.
+  8. [SynthesiserAgent] Summarise and integrate findings from all critiqued research, focusing on AI's positive and negative impacts on climate solutions.
+  9. [WriterAgent] Compile the synthesised information into a coherent report titled "AI's Impact on Climate Change Solutions".
+
+  Research Query: {{$query}}
+  Research Plan:
+template_format: handlebars
+input_variables:
+  - name: query
+    description: The user's research query.
+    is_required: true 

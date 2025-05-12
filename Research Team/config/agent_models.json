@@ -1,0 +1,11 @@
+{
+    "default_model_id": "gpt-4.1-nano",
+    "agent_model_configs": {
+        "PlannerAgent": "gpt-4.1-nano",
+        "ClarifierAgent": "gpt-4.1-nano",
+        "ResearchAgent": "gpt-4.1",
+        "CritiqueAgent": "gpt-4.1",
+        "SynthesiserAgent": "gpt-4.1",
+        "WriterAgent": "gpt-4.1"
+    }
+} 
